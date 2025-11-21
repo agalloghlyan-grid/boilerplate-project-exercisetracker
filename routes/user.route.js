@@ -86,7 +86,8 @@ router.post('/users/:_id/exercises', (req, res) => {
         return res.status(400).json({ error });
     }
 
-    const formattedDate = validDate.toISOString().split('T')[0];
+    const dateToUse = validDate || new Date();
+    const formattedDate = dateToUse.toISOString().split('T')[0];
 
     checkUserExists(_id, (err, user) => {
         if (err) {
